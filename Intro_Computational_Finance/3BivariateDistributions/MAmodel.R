@@ -1,0 +1,9 @@
+#documentation of arima
+
+set.seed(123)
+# Simulate 250 observations from the described MA(1) model
+ma1_sim <- arima.sim(model = list(ma = 0.5), n = 250, mean = 0, sd = 0.1) + 0.05
+
+# A line plot of the simulated observations
+plot(ma1_sim, main="MA(1) Process: mu = 0.05, theta = 0.5", xlab="time",ylab="y(t)", type="l")
+abline(h = 0)
