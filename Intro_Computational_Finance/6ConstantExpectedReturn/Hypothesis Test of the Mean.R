@@ -16,13 +16,7 @@ all_returns <- diff(log(all_prices))
 # Create matrix with returns
 return_matrix <- coredata(all_returns)
 
-# Number of observations
-n_obs <- dim(return_matrix)[1]
-
-# Estimates of sigma2hat
-sigma2hat_vals <- apply(return_matrix, 2, var)
-
-# Standard Error of sigma2hat
-se_sigma2hat <- sigma2hat_vals/sqrt(n_obs/2)
-se_sigma2hat 
+#T-Test
+t.test(all_returns[,2], mu = 0, conf.level = 0.95)
+message("The P-value of 0.926 indicates you can not reject the null hypothesis. This means that you do not have sufficient counterevidence against the fact that the mean is simply zero.")
 

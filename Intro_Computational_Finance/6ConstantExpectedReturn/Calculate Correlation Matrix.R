@@ -6,23 +6,16 @@ index(VBLTX_prices) <- as.yearmon(index(VBLTX_prices))
 index(FMAGX_prices) <- as.yearmon(index(FMAGX_prices))
 index(SBUX_prices) <- as.yearmon(index(SBUX_prices))
 
-# Create merged price data
-all_prices <- merge(VBLTX_prices, FMAGX_prices, SBUX_prices)
-colnames(all_prices) <- c("VBLTX", "FMAGX", "SBUX")
 
-# Calculate cc returns as difference in log prices
-all_returns <- diff(log(all_prices))
+# Calculate the correlation matrix
+cor_matrix <- cor(return_matrix)
 
-# Create matrix with returns
-return_matrix <- coredata(all_returns)
+# Get the lower triangular part of that 'cor_matrix'
+rhohat_vals <- cor_matrix[lower.tri(cor_matrix)]
 
-# Number of observations
-n_obs <- dim(return_matrix)[1]
+# Set the names
+names(rhohat_vals) <- c("VBLTX, FMAGX", "VBLTX, SBUX", "FMAGX, SBUX")
 
-# Estimates of sigma2hat
-sigma2hat_vals <- apply(return_matrix, 2, var)
-
-# Standard Error of sigma2hat
-se_sigma2hat <- sigma2hat_vals/sqrt(n_obs/2)
-se_sigma2hat 
-
+# Compute the estimated standard errors for correlation
+se_rhohat <- (1-rhohat_vals^2)/sqrt(dim(return_matrix)[1])
+se_rhohat
