@@ -9,7 +9,9 @@ VBLTX_prices <- get.hist.quote(instrument = "vbltx", start = "1998-01-01", end =
                                compression = "m", retclass = "zoo", quiet = TRUE)
 
 # Get the adjusted closing prices from Fidelity Magellan
-FMAGX_prices <- get.hist.quote(instrument = "fmagx", start = "1998-01-01", end = "2009-12-31", quote = "AdjClose", provider = "yahoo", origin = "1970-01-01", compression = "m", retclass = "zoo", quiet = TRUE)
+FMAGX_prices <- get.hist.quote(instrument = "fmagx", start = "1998-01-01", end = "2009-12-31", 
+                               quote = "AdjClose", provider = "yahoo", origin = "1970-01-01", 
+                               compression = "m", retclass = "zoo", quiet = TRUE)
 
 # Get the adjusted closing prices from Starbucks
 SBUX_prices <- get.hist.quote(instrument = "SBUX", start = "1998-01-01", end = "2009-12-31",
